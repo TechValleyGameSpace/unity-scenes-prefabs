@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class TriggerLoad : MonoBehaviour
@@ -39,20 +40,20 @@ public class TriggerLoad : MonoBehaviour
             {
                 case LoadMethod.AsyncLoad:
                     Debug.Log("Calling: Application.LoadLevelAsync(\"" + loadSceneName + "\")");
-                    loading = Application.LoadLevelAsync(loadSceneName);
+                    loading = SceneManager.LoadSceneAsync(loadSceneName);
                     break;
                 case LoadMethod.SyncAdditiveLoad:
                     Debug.Log("Calling: Application.LoadLevelAdditive(\"" + loadSceneName + "\")");
-                    Application.LoadLevelAdditive(loadSceneName);
+                    SceneManager.LoadScene(loadSceneName, LoadSceneMode.Additive);
                     break;
                 case LoadMethod.AsyncAdditiveLoad:
                     Debug.Log("Calling: Application.LoadLevelAdditiveAsync(\"" + loadSceneName + "\")");
-                    loading = Application.LoadLevelAdditiveAsync(loadSceneName);
+                    loading = SceneManager.LoadSceneAsync(loadSceneName, LoadSceneMode.Additive);
                     break;
                 case LoadMethod.SyncLoad:
                 default:
                     Debug.Log("Calling: Application.LoadLevel(\"" + loadSceneName + "\")");
-                    Application.LoadLevel(loadSceneName);
+                    SceneManager.LoadScene(loadSceneName);
                     break;
             }
             if(loading != null)
